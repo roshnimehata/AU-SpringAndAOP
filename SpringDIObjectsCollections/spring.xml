@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+  <bean id="triangle" class="com.au.spring.Triangle">
+    <property name="points">
+    <list>
+         <ref bean = "PointA"/>
+         <ref bean = "PointB"/>
+         <ref bean = "PointC"/>       
+    </list>
+    </property>
+    <!--<property name="PointA" ref="PointA"/>
+    <property name="PointB" ref="PointB"/>
+    <property name="PointC" ref="PointC"/>-->
+  </bean>
+  
+  <bean id="PointA" class="com.au.spring.Point">
+     <property name="x" value="0"/>
+     <property name="y" value="0"/>
+  </bean>
+  
+  <bean id="PointB" class="com.au.spring.Point">
+       <property name="x" value="1"/>
+       <property name="y" value="1"/>
+  </bean>
+  <bean id="PointC" class="com.au.spring.Point">
+        <property name="x" value="2"/>
+        <property name="y" value="2"/>
+  </bean>
+</beans>
