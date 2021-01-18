@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans> <!-- global- default-init-method="onInit" default-destroy-method="onCleanup" -->
+  
+  <bean id="triangle" class="com.au.spring.Triangle" init-method="onInit" destroy-method="onCleanup">  
+    <!--<property name="PointA" ref="PointA"/>
+    <property name="PointB" ref="PointB"/>
+    <property name="PointC" ref="PointC"/>-->
+  </bean>
+  
+  <!-- Use of .properties file  -->
+  <bean id="PointA" class="com.au.spring.Point">
+     <property name="x" value="${pointA.pointX}"/>
+     <property name="y" value="${pointA.pointY}"/>
+  </bean>
+ 
+  
+  <bean id="PointB" class="com.au.spring.Point">
+       <property name="x" value="1"/>
+       <property name="y" value="1"/>
+  </bean>
+  
+  <bean id="PointC" class="com.au.spring.Point">
+        <property name="x" value="2"/>
+        <property name="y" value="2"/>
+  </bean>
+  
+  <!-- Own class which implements BeanFactoryPostProcessor -->
+  <bean class="com.au.spring.MyBeanFactoryPP"> </bean>
+  
+  <!-- Externalize properties -->
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+     <property name="locations" value="pointsConfig.properties">
+     </property>
+  </bean>
+  
+  <!-- @Autowired annotation is a postprocessor -->
+  <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
+  
+</beans>
