@@ -1,20 +1,45 @@
 package com.spring.au;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//@Component
-//@Scope(value = "prototype")
+@Component
+@Scope(value = "prototype")
 public class Triangle {
 		
-	  private String type; 
+	  public Point getPointA() {
+		return pointA;
+	}
+
+	public void setPointA(Point pointA) {
+		this.pointA = pointA;
+	}
+
+	public Point getPointB() {
+		return pointB;
+	}
+
+	public void setPointB(Point pointB) {
+		this.pointB = pointB;
+	}
+
+	private String type; 
 	  
 	  @Autowired
+	  @Qualifier("PointA")
 	  private Point pointA;
-	 	  
+	  
+	  @Autowired
+	  @Qualifier("PointB")
+	  private Point pointB;
+	  
+	  
+	  //Add Non-Primitive type member variable 
+	   	  
 	  public Triangle(String type) 
 	  { 
 		  this.type = type;
@@ -28,15 +53,9 @@ public class Triangle {
 	  }
 	  
 	  public void draw() {
-	  System.out.println(getType()+" Triangle Drawn of type"+getType()+"with Point"+getPointA().getX()+","+getPointA().getY());
+	  System.out.println(getType()+" Triangle Drawn of type"+getType()+"with points"+getPointA().getX()+""+getPointA().getY()+"PointB "
+			  + getPointB().getX()+""+getPointB().getY());
 	  }
 
-	public Point getPointA() {
-		return pointA;
-	}
-
-	public void setPointA(Point pointA) {
-		this.pointA = pointA;
-	}
-	 
+	
 }
